@@ -29,7 +29,7 @@ const SubjectTeacherInformation = () => {
     const getTeacher = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/subject-teacher",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/subject-teacher`,
         );
 
         setTeacher(res.data);
