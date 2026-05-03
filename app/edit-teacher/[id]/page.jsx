@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodSchema } from "@/lib/zSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,7 +26,9 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import dayjs from "dayjs";
 
-const CreateTeacher = () => {
+const UpdateTeacher = ({ params }) => {
+  const { id } = React.use(params);
+
   // FORM SCHEMA
   const formSchema = zodSchema.pick({
     name: true,
@@ -40,7 +42,6 @@ const CreateTeacher = () => {
   // REACT HOOK FORM
   const form = useForm({
     resolver: zodResolver(formSchema),
-
     defaultValues: {
       name: "",
       subject: "",
@@ -51,6 +52,33 @@ const CreateTeacher = () => {
     },
   });
 
+  // FETCH SINGLE TEACHER
+  useEffect(() => {
+    const fetchTeacher = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/teacher/${id}`);
+
+        const teacher = res.data;
+
+        // FORM VALUE SET
+        form.reset({
+          name: teacher.name || "",
+          subject: teacher.subject || "",
+          designation: teacher.designation || "",
+          joiningDate: dayjs(teacher.joiningDate).format("YYYY-MM-DD"),
+          birthDate: dayjs(teacher.birthDate).format("YYYY-MM-DD"),
+          image: null,
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    if (id) {
+      fetchTeacher();
+    }
+  }, [id, form]);
+
   // SUBMIT
   const handleTeacherSubmit = async (data) => {
     try {
@@ -59,40 +87,39 @@ const CreateTeacher = () => {
       formData.append("name", data.name);
       formData.append("subject", data.subject);
       formData.append("designation", data.designation);
-
       formData.append(
         "joiningDate",
         dayjs(data.joiningDate).format("YYYY-MM-DD"),
       );
-
       formData.append("birthDate", dayjs(data.birthDate).format("YYYY-MM-DD"));
+      // IMAGE OPTIONAL
+      if (data.image) {
+        formData.append("image", data.image);
+      }
 
-      formData.append("image", data.image);
-
-      const res = await axios.post(
-        "http://localhost:5000/api/teacher",
+      // UPDATE API
+      const res = await axios.put(
+        `http://localhost:5000/api/teacher/${id}`,
         formData,
       );
 
-      console.log(res.data);
-
       form.reset();
+      return res.data;
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className=" flex py-2 justify-center bg-gray-50 px-3 md:px-6">
-      <Card className="w-full md:h-140  max-w-4xl rounded-2xl border shadow-xl">
-        {/* HEADER */}
+    <div className="flex py-2 justify-center bg-gray-50 px-3 md:px-6">
+      <Card className="w-full md:h-auto max-w-4xl rounded-2xl border shadow-xl">
         <CardHeader className="text-center space-y-2 pb-8">
           <CardTitle className="text-2xl md:text-4xl font-bold">
-            Teacher Application
+            Update Teacher
           </CardTitle>
 
           <CardDescription className="text-sm md:text-base text-gray-500">
-            Fill your information correctly
+            Update teacher information
           </CardDescription>
         </CardHeader>
 
@@ -234,7 +261,7 @@ const CreateTeacher = () => {
                 type="submit"
                 className="w-full h-12 rounded-xl text-base font-medium cursor-pointer"
               >
-                Submit Application
+                Update Teacher
               </Button>
             </div>
           </form>
@@ -244,4 +271,4 @@ const CreateTeacher = () => {
   );
 };
 
-export default CreateTeacher;
+export default UpdateTeacher;
