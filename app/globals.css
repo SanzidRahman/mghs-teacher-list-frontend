@@ -128,3 +128,24 @@
     @apply font-sans;
   }
 }
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 15s linear infinite;
+}
+
+/* HOVER করলে বন্ধ হবে */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
