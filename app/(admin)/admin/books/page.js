@@ -1,10 +1,4 @@
-"use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Breadcrumb } from "@/components/Breadcrumb";
-import { ADMIN_CATEGORY_SHOW } from "@/lib/AdminPanelRoute";
-import { API_URL } from "@/lib/api";
 
 const BooksShowPage = () => {
   const breadcrumbItems = [

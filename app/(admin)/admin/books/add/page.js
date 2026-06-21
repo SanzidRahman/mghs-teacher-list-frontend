@@ -1,14 +1,4 @@
-"use client";
 
-import { useMemo, useState } from "react";
-import axios from "axios";
-
-import { Breadcrumb } from "@/components/Breadcrumb";
-import Select from "@/components/Select";
-import useFetch from "@/hooks/useFetch";
-import { ADMIN_BOOKS_ADD } from "@/lib/AdminPanelRoute";
-import Image from "next/image";
-import { API_URL } from "@/lib/api";
 
 const BooksAddPage = () => {
     const [preview, setPreview] = useState("");
