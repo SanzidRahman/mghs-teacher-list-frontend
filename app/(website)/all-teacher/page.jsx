@@ -19,8 +19,7 @@ import { mkConfig, generateCsv, download } from "export-to-csv";
 
 // DAYJS
 import dayjs from "dayjs";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { Api_Url } from "@/lib/api";
 
 const SubjectTeacherInformation = () => {
   const [teacher, setTeacher] = useState([]);
@@ -30,7 +29,7 @@ const SubjectTeacherInformation = () => {
   useEffect(() => {
     const getTeacher = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/teacher");
+        const res = await axios.get(`${Api_Url}/api/teacher`);
 
         setTeacher(res.data);
       } catch (error) {
