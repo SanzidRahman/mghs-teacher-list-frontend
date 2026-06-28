@@ -17,7 +17,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-black/20" />
 
             <div className="relative z-20 h-full flex items-center px-12">
-                <div className="flex items-center gap-6">
+                <div className="flex flex-col  gap-6">
                     <Image
                         src={slider2}
                         alt="School Logo"
@@ -28,11 +28,11 @@ const Hero = () => {
 
                     <div>
                         <h1 className="text-3xl font-bold text-white drop-shadow-lg">
-                            ময়মনসিংহ জেলা স্কুল
+                            মৌলভীবাজার সরকারি উচ্চ বিদ্যালয়
                         </h1>
 
                         <p className="text-xl text-white font-semibold drop-shadow">
-                            ময়মনসিংহ সদর, ময়মনসিংহ
+                            মৌলভীবাজার সদর, মৌলভীবাজার
                         </p>
                     </div>
                 </div>

@@ -1,10 +1,6 @@
 
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader } from "@/components/ui/card";
-import Link from "next/link";
-
-
+import CountOverview from "@/components/CountOverview";
 
 
 const Dashboard = () => {
@@ -22,26 +18,7 @@ const Dashboard = () => {
           This is the Dashboard page content. The breadcrumb above shows the navigation path.
         </p>
         <div className="mt-10 flex  lg:flex-nowrap flex-wrap gap-10">
-          <Card className={"rounded-lg lg:w-[70%] w-full p-0"}>
-            <CardHeader className={"py-3"}>
-              <div className="flex justify-between items-center">
-                <span>Order OverView</span>
-                <Button>
-                  <Link href={"/"}>View All</Link>
-                </Button>
-              </div>
-            </CardHeader>
-          </Card>
-          <Card className={"rounded-lg lg:w-[30%] w-full p-0"}>
-            <CardHeader className={"py-3"}>
-              <div className="flex justify-between items-center">
-                <span>Order Status</span>
-                <Button>
-                  <Link href={"/"}>View All</Link>
-                </Button>
-              </div>
-            </CardHeader>
-          </Card>
+          <CountOverview />
         </div>
       </div>
     </div>

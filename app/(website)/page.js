@@ -1,5 +1,3 @@
-import Hero from "@/components/Hero";
-import HomeNavbar from "@/components/HomeNavbar";
 import NoticeBar from "../components/NoticeBar";
 import HeadTeacher from "@/components/HeadTeacher";
 import QuickLinks from "@/components/QuickLinks";
@@ -8,10 +6,8 @@ import Footer from "@/components/Footer";
 
 export default function HomePage() {
   return (
-    <main className="max-w-[1200px] mx-auto bg-white shadow-lg min-h-screen">
-      <Hero />
-      <HomeNavbar />
-      <div className="grid lg:grid-cols-12 grid-cols-1 gap-6 p-4">
+    <main className="max-w-[1200px] mx-auto bg-white shadow-lg min-h-screen mt-2">
+      <div className="grid lg:grid-cols-12 grid-cols-1 gap-6 p-4 ">
         <div className="lg:col-span-8 col-span-12">
           <NoticeBar />
         </div>

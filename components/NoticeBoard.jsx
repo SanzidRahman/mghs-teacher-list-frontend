@@ -7,7 +7,10 @@ export default function NoticeBoard() {
     const [selectedPdf, setSelectedPdf] = useState(null);
     const [pdfs, setPdfs] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const [showAll, setShowAll] = useState(false);
+    const INITIAL_COUNT = 5;
+    const displayedPdfs = showAll ? pdfs : pdfs.slice(0, INITIAL_COUNT);
+    const hasMore = pdfs.length > INITIAL_COUNT;
 
     useEffect(() => {
         const load = async () => {
@@ -53,6 +56,7 @@ export default function NoticeBoard() {
                     </h2>
 
                     {/* Content */}
+
                     {loading ? (
                         <div className="space-y-3 animate-pulse">
                             <div className="h-12 bg-gray-200 rounded-md"></div>
@@ -60,55 +64,76 @@ export default function NoticeBoard() {
                             <div className="h-12 bg-gray-200 rounded-md"></div>
                         </div>
                     ) : pdfs.length > 0 ? (
-                        <div className="space-y-3">
-                            {pdfs.map((pdf) => (
-                                <div
-                                    key={pdf._id}
-                                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gray-50 hover:bg-gray-100 transition p-4 rounded-xl border"
-                                >
-                                    <div className="flex-1">
-                                        <h3 className="text-gray-900 font-medium text-sm sm:text-base">
-                                            {pdf.title}
-                                        </h3>
-                                        <p className="text-xs text-gray-500 mt-1">
-                                            {new Date(pdf.createdAt).toLocaleDateString()}
-                                        </p>
+                        <>
+                            <div className="space-y-3">
+                                {displayedPdfs.map((pdf) => (
+                                    <div
+                                        key={pdf._id}
+                                        className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gray-50 hover:bg-gray-100 transition p-4 rounded-xl border hover:shadow-md"
+                                    >
+                                        <div className="flex-1 min-w-0">
+                                            <h3 className="text-gray-900 font-medium text-sm sm:text-base truncate">
+                                                {pdf.title}
+                                            </h3>
+                                            <p className="text-xs text-gray-500 mt-1">
+                                                {new Date(pdf.createdAt).toLocaleDateString('en-US', {
+                                                    year: 'numeric',
+                                                    month: 'short',
+                                                    day: 'numeric'
+                                                })}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex gap-2 flex-wrap flex-shrink-0">
+                                            <a
+                                                href={pdf.pdf_secure_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center justify-center px-3.5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                                aria-label={`View ${pdf.title}`}
+                                            >
+                                                👁️ View
+                                            </a>
+
+                                            <a
+                                                href={pdf.pdf_secure_url}
+                                                download
+                                                className="inline-flex items-center justify-center px-3.5 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                                                aria-label={`Download ${pdf.title}`}
+                                            >
+                                                📥 Download
+                                            </a>
+                                        </div>
                                     </div>
+                                ))}
+                            </div>
 
-                                    <div className="flex gap-2 flex-wrap">
-                                        <a
-                                            href={pdf.pdf_secure_url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700"
-                                        >
-                                            👁️ View
-                                        </a>
-
-
-                                        <a
-                                            href={pdf.pdf_secure_url}
-                                            download
-                                            className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700"
-                                        >
-                                            📥 Download
-                                        </a>
-                                    </div>
+                            {/* See All Button */}
+                            {hasMore && (
+                                <div className="text-center mt-6">
+                                    <button
+                                        onClick={() => setShowAll(!showAll)}
+                                        className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                    >
+                                        {showAll ? (
+                                            <>
+                                                <span>📤</span> Show Less
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span>📋</span> See All ({pdfs.length} notices)
+                                            </>
+                                        )}
+                                    </button>
                                 </div>
-                            ))}
-                        </div>
+                            )}
+                        </>
                     ) : (
                         <div className="text-center py-10 text-gray-500">
                             📭 কোনো PDF পাওয়া যায়নি
                         </div>
                     )}
 
-                    {/* Footer Button */}
-                    <div className="mt-6 flex justify-center">
-                        <button className="px-6 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition text-sm sm:text-base">
-                            সকল নোটিশ দেখুন
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>

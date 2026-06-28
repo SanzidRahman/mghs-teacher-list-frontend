@@ -1,8 +1,12 @@
+import HomeNavbar from '@/components/HomeNavbar'
 import React from 'react'
 
 const layout = ({ children }) => {
     return (
-        <div>{children}</div>
+        <div>
+            <HomeNavbar />
+            {children}
+        </div>
     )
 }
 

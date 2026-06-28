@@ -22,7 +22,7 @@ export default function Sidebar() {
   ${collapsed ? "w-20" : "w-72"} flex flex-col`}
     >
       {/* Top */}
-      <div className="flex items-center justify-between h-16 border-b border-gray-700">
+      <div className="flex pl-6 items-center justify-between h-16 border-b border-gray-700">
         {!collapsed && <h1 className="text-lg font-bold">Admin Panel</h1>}
         <button
           onClick={toggleSidebar}

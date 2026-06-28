@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+import slider2 from "@/public/slider2.jpeg"
 
 const HeadTeacher = () => {
     return (
@@ -10,11 +11,11 @@ const HeadTeacher = () => {
 
             <div className="p-5 text-center">
                 <Image
-                    src="https://randomuser.me/api/portraits/women/65.jpg"
+                    src={slider2}
                     alt="Head Teacher"
                     width={250}
                     height={300}
-                    className="mx-auto rounded-lg object-cover"
+                    className=" rounded-lg object-cover"
                 />
 
                 <h3 className="mt-4 text-xl font-bold">তুলসী রানী সরকার</h3>
