@@ -2,6 +2,7 @@ import NoticeBar from "../components/NoticeBar";
 import HeadTeacher from "@/components/HeadTeacher";
 import QuickLinks from "@/components/QuickLinks";
 import Footer from "@/components/Footer";
+import News from "@/components/News";
 
 
 export default function HomePage() {
@@ -10,11 +11,15 @@ export default function HomePage() {
       <div className="grid lg:grid-cols-12 grid-cols-1 gap-6 p-4 ">
         <div className="lg:col-span-8 col-span-12">
           <NoticeBar />
+          <News />
         </div>
         <div className="lg:col-span-4 col-span-12 space-y-4">
           <HeadTeacher />
           <QuickLinks />
         </div>
+
+
+
       </div>
       <Footer />
     </main>

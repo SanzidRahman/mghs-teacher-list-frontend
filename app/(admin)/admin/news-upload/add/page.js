@@ -5,7 +5,6 @@ import axios from "axios";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { ADMIN_UPLOADFILE_SHOW } from "@/lib/AdminPanelRoute";
 
-
 export default function UploadPdfPage() {
     const [title, setTitle] = useState("");
     const [pdf, setPdf] = useState(null);
@@ -14,7 +13,7 @@ export default function UploadPdfPage() {
     const fileInputRef = useRef(null);
     const breadcrumbItems = [
         { label: "Dashboard", href: "/admin/dashboard" },
-        { label: "All-Pdfs", href: ADMIN_UPLOADFILE_SHOW },
+        { label: "All-News", href: ADMIN_UPLOADFILE_SHOW },
     ];
 
     const handleUpload = async (e) => {
@@ -36,7 +35,7 @@ export default function UploadPdfPage() {
             formData.append("pdf", pdf);
 
             const { data } = await axios.post(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/pdfFile`,
+                `${process.env.NEXT_PUBLIC_API_URL}/api/newsFile`,
                 formData,
                 {
                     headers: {
@@ -45,7 +44,7 @@ export default function UploadPdfPage() {
                 }
             );
 
-            alert(data.message || "PDF uploaded successfully");
+            alert(data.message || "News uploaded successfully");
 
             setTitle("");
             setPdf(null);
@@ -74,7 +73,7 @@ export default function UploadPdfPage() {
                         {/* Header */}
                         <div className="border-b border-slate-200 px-6 py-5">
                             <h1 className="text-2xl font-bold text-slate-900">
-                                Upload PDF
+                                Upload News
                             </h1>
 
                             <p className="mt-1 text-sm text-slate-500">
@@ -90,7 +89,7 @@ export default function UploadPdfPage() {
                             {/* Title */}
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-slate-700">
-                                    PDF Title
+                                    News Title
                                 </label>
 
                                 <input
@@ -107,7 +106,7 @@ export default function UploadPdfPage() {
                             {/* File Upload */}
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-slate-700">
-                                    PDF File
+                                    News File
                                 </label>
 
                                 <input
