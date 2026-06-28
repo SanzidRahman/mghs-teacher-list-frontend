@@ -35,16 +35,16 @@ const HeadTeacher = () => {
                 <h2 className="font-bold">প্রধান শিক্ষক</h2>
             </div>
 
-            <div className="p-5 text-center flex flex-col items-center">
+            <div className="p-2 text-center flex flex-col items-center">
                 <Image
                     src={HT.image}
                     alt={HT.name}
                     width={250}
-                    height={300}
-                    className="rounded-lg object-cover h-auto"
+                    height={250}
+                    className="rounded-lg object-cover"
                 />
 
-                <h3 className="mt-4 text-xl font-bold">
+                <h3 className="mt-2 text-xl font-bold">
                     {HT.name}
                 </h3>
 
