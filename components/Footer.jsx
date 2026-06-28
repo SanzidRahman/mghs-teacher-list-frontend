@@ -2,7 +2,7 @@
 const Footer = () => {
     return (
         <footer className="bg-gray-900 text-white mt-8">
-            <div className="max-w-6xl mx-auto px-4 py-8">
+            <div className="max-w-6xl mx-auto px-10 py-8">
                 <div className="grid md:grid-cols-4 grid-cols-2 gap-8">
                     <div>
                         <h3 className="font-bold text-lg mb-3">About School</h3>
@@ -40,7 +40,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="border-t border-gray-800 mt-6 pt-4 text-center text-sm text-gray-500">
-                    © {new Date().getFullYear()} MZS School. All rights reserved.
+                    © {new Date().getFullYear()} Moulvibazar Govt. High School. All rights reserved.
                 </div>
             </div>
         </footer>

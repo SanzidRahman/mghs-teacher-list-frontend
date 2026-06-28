@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const NoticeBar = () => {
-    const [selectedPdf, setSelectedPdf] = useState(null);
     const [pdfs, setPdfs] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -17,12 +16,7 @@ const NoticeBar = () => {
 
                 // Show only the first 5 notices
                 const latestNotices = data.slice(0, 5);
-
                 setPdfs(latestNotices);
-
-                if (latestNotices.length > 0) {
-                    setSelectedPdf(latestNotices[0]);
-                }
             } catch (error) {
                 console.error('Failed to load notices:', error);
             } finally {
@@ -54,26 +48,27 @@ const NoticeBar = () => {
                     <>
                         <ul className="space-y-4">
                             {pdfs.map((notice) => (
-                                <li
-                                    key={notice._id}
-                                    className="border-b pb-3 hover:text-blue-600 transition-colors cursor-pointer"
-                                >
-                                    <h3 className="text-sm font-medium">
-                                        ➤ {notice.title}
-                                    </h3>
-
-                                    <p className="text-xs text-gray-500 mt-1">
-                                        {new Date(
-                                            notice.createdAt
-                                        ).toLocaleDateString('en-GB')}
-                                    </p>
+                                <li key={notice._id} className="border-b pb-3">
+                                    <Link
+                                        href={`/notice/${notice.slug}`}
+                                        className="block hover:text-blue-600 transition-colors"
+                                    >
+                                        <h3 className="text-sm font-medium">
+                                            ➤ {notice.title}
+                                        </h3>
+                                        <p className="text-xs text-gray-500 mt-1">
+                                            {new Date(
+                                                notice.createdAt
+                                            ).toLocaleDateString('en-GB')}
+                                        </p>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
 
                         <div className="mt-6 text-start">
                             <Link
-                                href="/notice"
+                                href="/notice/all"
                                 className="inline-block bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition"
                             >
                                 সকল নোটিশ

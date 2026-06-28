@@ -47,7 +47,7 @@ const LoginPage = () => {
       const { data: response } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, values);
 
       if (!response.success) throw new Error(response.message);
-      toast.success(response.messgae)
+      toast.success(response.message)
 
       reset();
       route.push(
@@ -65,8 +65,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex mt-10 justify-center bg-linear-to-r from-blue-400 via-white to-blue-100 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl shadow-blue-900 p-8">
+    <div className="flex mt-10 justify-center  px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl shadow-blue-900 p-6">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-extrabold text-gray-800">Login</h1>
@@ -76,7 +76,7 @@ const LoginPage = () => {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit(handleLoginSubmit)} className="space-y-6">
+        <form onSubmit={handleSubmit(handleLoginSubmit)} className="space-y-2">
           {/* Email or Phone */}
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-700">

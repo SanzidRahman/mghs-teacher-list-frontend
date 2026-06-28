@@ -1,10 +1,10 @@
 import NoticeBoard from '@/components/NoticeBoard'
 import React from 'react'
 
-const Notice = () => {
+const AllNotice = () => {
     return (
         <div><NoticeBoard /></div>
     )
 }
 
-export default Notice
+export default AllNotice

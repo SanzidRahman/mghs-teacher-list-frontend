@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 const News = () => {
     // Initialized as null but typed or left flexible for data objects
     const [selectedPdf, setSelectedPdf] = useState(null);
-    const [pdfs, setPdfs] = useState([]);
+    const [news, setNews] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const News = () => {
                 // Show only the first 5 notices
                 const latestNotices = data.slice(0, 5);
 
-                setPdfs(latestNotices);
+                setNews(latestNotices);
 
                 if (latestNotices.length > 0) {
                     setSelectedPdf(latestNotices[0]);
@@ -35,6 +35,8 @@ const News = () => {
         load();
     }, []);
 
+    console.log(news)
+
     if (loading) {
         return <div className="text-center p-4">Loading news...</div>; // Simple loading state handling
     }
@@ -48,13 +50,11 @@ const News = () => {
 
                 <div className="overflow-hidden w-full">
                     <div className="animate-marquee py-3 flex gap-10 cursor-pointer">
-                        {pdfs.length > 0 ? (
-                            pdfs.map((notice, index) => (
-                                // Replaced <a> with Next.js <Link> and added a proper href/onClick action
+                        {news.length > 0 ? (
+                            news.map((notice) => (
                                 <Link
-                                    key={notice._id || index} // Using a unique ID is safer than array index
-                                    href={notice.pdfUrl || '#'}
-                                    onClick={() => setSelectedPdf(notice)}
+                                    key={notice._id}
+                                    href={`/news/${notice.slug}`}   // or `/news/${notice._id}`
                                     className="hover:text-yellow-400 transition whitespace-nowrap"
                                 >
                                     {notice.title}
