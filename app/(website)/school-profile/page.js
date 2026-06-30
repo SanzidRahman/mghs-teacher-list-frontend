@@ -1,4 +1,4 @@
-// page.tsx
+
 import { Suspense } from "react";
 import ViewSchoolProfile from "./ViewSchoolProfile";
 

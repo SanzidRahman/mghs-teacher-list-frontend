@@ -9,12 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-// CSV PACKAGE
 import { mkConfig, generateCsv, download } from "export-to-csv";
 
 // DAYJS

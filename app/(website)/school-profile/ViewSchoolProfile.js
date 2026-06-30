@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Api_Url } from '@/lib/api';
 
 export default function ViewSchoolProfile() {
     const searchParams = useSearchParams();
@@ -17,7 +18,7 @@ export default function ViewSchoolProfile() {
             try {
                 setLoading(true);
                 // Replace with your actual production backend URL if different
-                const response = await fetch(`http://localhost:5000/api/schoolInfo?eiin=${eiin}`);
+                const response = await fetch(`${Api_Url}/api/schoolInfo?eiin=${eiin}`);
                 const result = await response.json();
 
                 if (result.success) {
